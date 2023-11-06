@@ -10,12 +10,6 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignUp = () => {
-    // Validate input fields
-    // Perform sign-up logic (e.g., call to backend API)
-    // Navigate to HomeScreen if successful
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Sign Up</Text>
@@ -52,8 +46,11 @@ const SignUpScreen = () => {
         style={styles.input}
         secureTextEntry
       />
-      <Button title="Sign Up" onPress={handleSignUp} />
-      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+      <Button
+        title="Sign Up"
+        onPress={() => navigation.navigate('Home')} // Navigate to Home when pressed
+      />
+      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>{/* <Button title="Sign Up" onPress={handleSignUp} /> */}
         <Text style={styles.linkText}>Already have an account? Sign in</Text>
       </TouchableOpacity>
     </View>
@@ -88,3 +85,4 @@ const styles = StyleSheet.create({
 });
 
 export default SignUpScreen;
+
