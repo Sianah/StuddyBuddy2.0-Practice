@@ -28,7 +28,7 @@ const SignInScreen = () => {
         title="Sign In"
         onPress={() => navigation.navigate('Home')} // Navigate to Home when pressed
       />
-      {/* <Button title="Sign " onPress={handleSignUp} /> */}
+      {/* <Button title="Sign in" onPress={handleSignIn} /> */}
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.linkText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
