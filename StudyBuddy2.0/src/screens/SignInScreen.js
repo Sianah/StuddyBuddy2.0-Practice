@@ -7,6 +7,12 @@ const SignInScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSignIn = () => {
+    // Validate input fields
+    // Perform sign-in logic (e.g., call to backend API)
+    // Navigate to HomeScreen if successful
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Sign In</Text>
@@ -24,11 +30,7 @@ const SignInScreen = () => {
         style={styles.input}
         secureTextEntry
       />
-      <Button
-        title="Sign In"
-        onPress={() => navigation.navigate('Home')} // Navigate to Home when pressed
-      />
-      {/* <Button title="Sign " onPress={handleSignUp} /> */}
+      <Button title="Sign In" onPress={handleSignIn} />
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.linkText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
 });
+// You can reuse the styles from SignUpScreen, assuming they are in the same style file or theme.
 
 export default SignInScreen;
-
-
