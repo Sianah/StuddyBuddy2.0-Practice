@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
@@ -9,6 +9,21 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+  const fadeAnim = new Animated.Value(1); // Initial opacity for the splash overlay
+
+  useEffect(() => {
+    // Wait for a few seconds, then fade out the splash overlay
+    const timer = setTimeout(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 0, // Fade to transparent
+        duration: 2000, // Duration for fade-out
+        useNativeDriver: true,
+      }).start(() => setIsSplashVisible(false)); // Hide splash overlay after fade-out
+    }, 2000); // Time before starting the fade-out
+
+    return () => clearTimeout(timer); // Clean up the timer if the component unmounts
+  }, []);
 
   return (
     <View style={styles.container}>
