@@ -5,14 +5,16 @@ import SignInScreen from '../screens/SignInScreen';
 import HomePage from '../screens/HomePage';
 import BottomTabNavigator from './BottomTabNavigator';
 import MessageDetailScreen from '../screens/MessageDetailScreen';
+import SplashScreen from '../screens/SplashScreen';
 // ... other imports
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="SignUp" component={SignUpScreen} />
-    <Stack.Screen name="SignIn" component={SignInScreen} />
+  <Stack.Navigator initialRouteName="Splash">
+    <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+    <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }}/>
     <Stack.Screen name="Home" component={BottomTabNavigator} options={{ headerShown: false }} />
     <Stack.Screen
   name="MessageDetail"
