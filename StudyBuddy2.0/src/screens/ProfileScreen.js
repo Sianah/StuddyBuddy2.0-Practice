@@ -20,6 +20,9 @@ const ProfileScreen = () => {
     studyGroups: ['Study Group 1', 'Study Group 2'],
     classes: ['Class 1', 'Class 2'],
     likes: ['Like 1', 'Like 2'],
+    skills: ['Skill 1', 'Skill 2'],
+    strengths: ['Strength 1', 'Strength 2'],
+    weaknesses: ['Weakness 1', 'Weakness 2']
     // Additional sections like 'Likes', 'Skills', etc. would be handled similarly
   };
 
@@ -28,6 +31,7 @@ const ProfileScreen = () => {
   const [newClass, setNewClass] = useState('');
   const [likes, setLikes] = useState(userInfo.likes);
   const [newLikes, setNewLikes] = useState('');
+  const[newSkills, setNewSkills] = useState(userInfo.skills);
 
   const handleAddClass = () => {
     setClasses([...classes, newClass]);
