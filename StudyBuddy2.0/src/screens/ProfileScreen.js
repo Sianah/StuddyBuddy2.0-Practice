@@ -19,22 +19,35 @@ const ProfileScreen = () => {
     profilePic: 'https://via.placeholder.com/150', // Replace with actual image path
     studyGroups: ['Study Group 1', 'Study Group 2'],
     classes: ['Class 1', 'Class 2'],
+    likes: ['Like 1', 'Like 2'],
     // Additional sections like 'Likes', 'Skills', etc. would be handled similarly
   };
 
   // State to handle the addition and removal of classes.
   const [classes, setClasses] = useState(userInfo.classes);
   const [newClass, setNewClass] = useState('');
+  const [likes, setLikes] = useState(userInfo.likes);
+  const [newLikes, setNewLikes] = useState('');
 
   const handleAddClass = () => {
     setClasses([...classes, newClass]);
     setNewClass('');
   };
 
+  const handleAddLikes = () => {
+    setLikes([...likes,newLikes]);
+    setNewLikes('');
+  }
+
   const handleRemoveClass = (index) => {
     const updatedClasses = classes.filter((_, classIndex) => classIndex !== index);
     setClasses(updatedClasses);
   };
+
+  const handleRemoveLike = (index) => {
+    const updatedLikes = likes.filter((_, likeIndex) => likeIndex !== index);
+    setLikes(updatedLikes);
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -83,6 +96,28 @@ const ProfileScreen = () => {
           onChangeText={setNewClass}
         />
         <TouchableOpacity onPress={handleAddClass}>
+          <Ionicons name="add-circle" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.sectionTitle}>Likes</Text>
+      <View style={styles.classesList}>
+        {likes.map((likeItem, index) => (
+          <View key={index} style={styles.classItem}>
+            <Text style={styles.listItem}>{likeItem}</Text>
+            <TouchableOpacity onPress={() => handleRemoveLike(index)}>
+              <Ionicons name="remove-circle" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+      <View style={styles.addClassSection}>
+        <TextInput
+          style={styles.classInput}
+          placeholder="New like"
+          value={newLikes}
+          onChangeText={setNewLikes}
+        />
+        <TouchableOpacity onPress={handleAddLikes}>
           <Ionicons name="add-circle" size={24} color="#000" />
         </TouchableOpacity>
       </View>
