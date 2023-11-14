@@ -31,7 +31,10 @@ const ProfileScreen = () => {
   const [newClass, setNewClass] = useState('');
   const [likes, setLikes] = useState(userInfo.likes);
   const [newLikes, setNewLikes] = useState('');
+  const[skills, setSkills] = useState(userInfo.skills);
   const[newSkills, setNewSkills] = useState(userInfo.skills);
+  const[strengths, setStrengths] = useState(userInfo.strengths);
+  const[newStrengths, setNewStrengths] = useState(userInfo.strengths);
 
   const handleAddClass = () => {
     setClasses([...classes, newClass]);
@@ -41,6 +44,15 @@ const ProfileScreen = () => {
   const handleAddLikes = () => {
     setLikes([...likes,newLikes]);
     setNewLikes('');
+  }
+  const handleAddSkill = () => {
+    setSkills([...skills,newSkills]);
+    setNewSkills('');
+  }
+
+  const handleAddStrength = () => {
+    setStrengths([...strengths,newStrengths]);
+    setNewStrengths('');
   }
 
   const handleRemoveClass = (index) => {
@@ -52,6 +64,15 @@ const ProfileScreen = () => {
     const updatedLikes = likes.filter((_, likeIndex) => likeIndex !== index);
     setLikes(updatedLikes);
   }
+  const handleRemoveSkill = (index) => {
+    const updatedSkills = skills.filter((_, skillIndex) => skillIndex !== index);
+    setSkills(updatedSkills);
+  }
+  const handleRemoveStrength = (index) => {
+    const updatedStrengths = strengths.filter((_, strengthIndex) => strengthIndex !== index);
+    setStrengths(updatedStrengths);
+  }
+  
 
   return (
     <ScrollView style={styles.container}>
@@ -122,6 +143,52 @@ const ProfileScreen = () => {
           onChangeText={setNewLikes}
         />
         <TouchableOpacity onPress={handleAddLikes}>
+          <Ionicons name="add-circle" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.sectionTitle}>Skills</Text>
+      <View style={styles.classesList}>
+        {skills.map((skillItem, index) => (
+          <View key={index} style={styles.classItem}>
+            <Text style={styles.listItem}>{skillItem}</Text>
+            <TouchableOpacity onPress={() => handleRemoveSkill(index)}>
+              <Ionicons name="remove-circle" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+      <View style={styles.addClassSection}>
+        <TextInput
+          style={styles.classInput}
+          placeholder="New Skill"
+          value={newSkills}
+          onChangeText={setNewSkills}
+        />
+        <TouchableOpacity onPress={handleAddSkill}>
+          <Ionicons name="add-circle" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.sectionTitle}>Strengths</Text>
+      <View style={styles.classesList}>
+        {strengths.map((strengthItem, index) => (
+          <View key={index} style={styles.classItem}>
+            <Text style={styles.listItem}>{strengthItem}</Text>
+            <TouchableOpacity onPress={() => handleRemoveStrength(index)}>
+              <Ionicons name="remove-circle" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+      <View style={styles.addClassSection}>
+        <TextInput
+          style={styles.classInput}
+          placeholder="New Strength"
+          value={newStrengths}
+          onChangeText={setNewStrengths}
+        />
+        <TouchableOpacity onPress={handleAddStrength}>
           <Ionicons name="add-circle" size={24} color="#000" />
         </TouchableOpacity>
       </View>
