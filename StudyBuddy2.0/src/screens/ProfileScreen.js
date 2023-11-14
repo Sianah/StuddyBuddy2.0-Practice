@@ -32,9 +32,12 @@ const ProfileScreen = () => {
   const [likes, setLikes] = useState(userInfo.likes);
   const [newLikes, setNewLikes] = useState('');
   const[skills, setSkills] = useState(userInfo.skills);
-  const[newSkills, setNewSkills] = useState(userInfo.skills);
+  const[newSkills, setNewSkills] = useState('');
   const[strengths, setStrengths] = useState(userInfo.strengths);
-  const[newStrengths, setNewStrengths] = useState(userInfo.strengths);
+  const[newStrengths, setNewStrengths] = useState('');
+  const[weaknesses, setWeaknesses] = useState(userInfo.weaknesses);
+  const[newWeaknesses, setNewWeaknesses] = useState('');
+  //do weaknesses
 
   const handleAddClass = () => {
     setClasses([...classes, newClass]);
@@ -55,6 +58,11 @@ const ProfileScreen = () => {
     setNewStrengths('');
   }
 
+  const handleAddWeakness = () => {
+    setWeaknesses([...weaknesses,newWeaknesses]);
+    setNewWeaknesses('');
+  }
+
   const handleRemoveClass = (index) => {
     const updatedClasses = classes.filter((_, classIndex) => classIndex !== index);
     setClasses(updatedClasses);
@@ -71,6 +79,10 @@ const ProfileScreen = () => {
   const handleRemoveStrength = (index) => {
     const updatedStrengths = strengths.filter((_, strengthIndex) => strengthIndex !== index);
     setStrengths(updatedStrengths);
+  }
+  const handleRemoveWeakness = (index) => {
+    const updatedWeaknesses = weaknesses.filter((_, weaknessIndex) => weaknessIndex !== index);
+    setWeaknesses(updatedWeaknesses);
   }
   
 
@@ -189,6 +201,29 @@ const ProfileScreen = () => {
           onChangeText={setNewStrengths}
         />
         <TouchableOpacity onPress={handleAddStrength}>
+          <Ionicons name="add-circle" size={24} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.sectionTitle}>Weaknesses</Text>
+      <View style={styles.classesList}>
+        {weaknesses.map((weaknessItem, index) => (
+          <View key={index} style={styles.classItem}>
+            <Text style={styles.listItem}>{weaknessItem}</Text>
+            <TouchableOpacity onPress={() => handleRemoveWeakness(index)}>
+              <Ionicons name="remove-circle" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+      <View style={styles.addClassSection}>
+        <TextInput
+          style={styles.classInput}
+          placeholder="New Weakness"
+          value={newWeaknesses}
+          onChangeText={setNewWeaknesses}
+        />
+        <TouchableOpacity onPress={handleAddWeakness}>
           <Ionicons name="add-circle" size={24} color="#000" />
         </TouchableOpacity>
       </View>
