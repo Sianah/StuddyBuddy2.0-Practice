@@ -90,7 +90,7 @@ const MatchingScreen = () => {
 
 {/*Test*/}
       <TextInput
-        placeholder="Search for study groups..."
+        placeholder="Search for..."
         value={searchQuery}
         onChangeText={setSearchQuery}
         style={styles.searchBar}
@@ -100,12 +100,11 @@ const MatchingScreen = () => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <View style={styles.groupItem}>
-            <Text>{item.name}</Text>
+            <Text>{item.fullName}</Text>
             {/* <Button title="Join" onPress={() => {}} /> */}
           </View>
         )}
       />
-
 {/*Test*/}
 
     </ScrollView>
