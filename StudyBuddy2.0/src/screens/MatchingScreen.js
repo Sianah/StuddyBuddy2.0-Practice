@@ -15,7 +15,18 @@ const MatchingScreen = () => {
       weaknesses: ['Public Speaking'],
       strengths: ['Critical Thinking']
     },
+    {
+      id: '2',
+      fullName: 'John Doe',
+      profilePic: 'https://via.placeholder.com/150',
+      classes: ['Biology 202', 'Chemistry 301'],
+      likes: ['Writing', 'Farming'],
+      skills: ['Skill Management', 'Procrastination'],
+      weaknesses: ['Introverted AF'],
+      strengths: ['Extroverted AF']
+    },
     // ... other user profiles
+
   ]);
 
   // Index to keep track of the current user being displayed.
