@@ -216,6 +216,7 @@ const ProfileScreen = () => {
           </View>
         ))}
       </View>
+      
       <View style={styles.addClassSection}>
         <TextInput
           style={styles.classInput}
