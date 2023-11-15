@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, FlatList, Button, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MatchingScreen = () => {
@@ -29,6 +29,8 @@ const MatchingScreen = () => {
 
   ]);
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   // Index to keep track of the current user being displayed.
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -44,6 +46,18 @@ const MatchingScreen = () => {
 
   // The current user profile to display.
   const currentUser = users[currentIndex];
+
+
+
+
+{/*Test*/}
+  const filteredGroups = users.filter(group =>
+    group.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+{/*Test*/}
+
+
+
 
   return (
     <ScrollView style={styles.container}>
@@ -71,6 +85,29 @@ const MatchingScreen = () => {
           <Ionicons name="arrow-forward-circle" size={40} color="#000" />
         </TouchableOpacity>
       </View>
+
+      
+
+{/*Test*/}
+      <TextInput
+        placeholder="Search for study groups..."
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+        style={styles.searchBar}
+      />
+      <FlatList
+        data={filteredGroups}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.groupItem}>
+            <Text>{item.name}</Text>
+            {/* <Button title="Join" onPress={() => {}} /> */}
+          </View>
+        )}
+      />
+
+{/*Test*/}
+
     </ScrollView>
   );
 };
