@@ -155,6 +155,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
   },
+  searchBar: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 10,
+    margin: 10,
+    bottom: -17,
+  },
   // ... additional styles as needed
 });
 
