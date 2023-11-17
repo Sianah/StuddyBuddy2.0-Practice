@@ -31,7 +31,7 @@ const MatchingScreen = () => {
       id: '3',
       fullName: 'Jym Doe',
       profilePic: 'https://via.placeholder.com/150',
-      classes: ['Carpentry 101', 'Software 201'],
+      classes: ['Carpentry 101', 'Software 301'],
       likes: ['Reading', 'Gardening'],
       skills: ['Time Management', 'Organization'],
       weaknesses: ['Public Speaking'],
@@ -96,7 +96,7 @@ const MatchingScreen = () => {
           </View>
         </View>
         <TouchableOpacity style={styles.connectButton}>
-          <Text>Connect</Text>
+          <Text style = {styles.connectButtonText}>Connect</Text>
         </TouchableOpacity>
       </View>
 )}
@@ -129,6 +129,8 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     backgroundColor: '#fff',
+    height: 425,
+    justifyContent: 'space-between', // This will distribute the children evenly
   },
   fullName: {
     fontSize: 20,
@@ -136,8 +138,7 @@ const styles = StyleSheet.create({
   },
   profileSection: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
+    alignItems: 'flex-start',
   },
   profilePic: {
     width: 100,
@@ -147,13 +148,23 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     flex: 1,
-    alignItems: 'flex-start',
+    flexWrap: 'wrap', // Allow text to wrap within the container
+    alignContent: 'space-between', // Evenly distribute wrapped lines
   },
   connectButton: {
-    backgroundColor: '#e7e7e7',
+    backgroundColor: 'black',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
+    bottom: -80 // Stretch button to match the parent's width
+    // Remove bottom: -270 if you are using justifyContent: 'space-between'
+  },
+
+  connectButtonText: {
+    color: 'white', // Here you can put any color you want for the font
+    fontSize: 16, // You can adjust the font size as needed
+    fontWeight: 'bold', // Optional: if you want the text to be bold
+    // ... any other text styling you need
   },
   navigation: {
     flexDirection: 'row',
