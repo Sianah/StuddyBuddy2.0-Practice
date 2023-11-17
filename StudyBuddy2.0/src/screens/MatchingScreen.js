@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MatchingScreen = () => {
@@ -15,27 +15,74 @@ const MatchingScreen = () => {
       weaknesses: ['Public Speaking'],
       strengths: ['Critical Thinking']
     },
+
+    {
+      id: '2',
+      fullName: 'John Doe',
+      profilePic: 'https://via.placeholder.com/150',
+      classes: ['Chemistry 101', 'Software 201'],
+      likes: ['Reading', 'Gardening'],
+      skills: ['Time Management', 'Organization'],
+      weaknesses: ['Public Speaking'],
+      strengths: ['Critical Thinking']
+    },
+
+    {
+      id: '3',
+      fullName: 'Jym Doe',
+      profilePic: 'https://via.placeholder.com/150',
+      classes: ['Carpentry 101', 'Software 201'],
+      likes: ['Reading', 'Gardening'],
+      skills: ['Time Management', 'Organization'],
+      weaknesses: ['Public Speaking'],
+      strengths: ['Critical Thinking']
+    },
     // ... other user profiles
   ]);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredUsers = searchQuery
+    ? users.filter(user =>
+        user.classes.some(classItem =>
+          classItem.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      )
+    : users;
+
 
   // Index to keep track of the current user being displayed.
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const safeIndex = currentIndex % filteredUsers.length;
+  const currentUser = filteredUsers[safeIndex];
   // Move to the previous user profile.
   const prevUser = () => {
-    setCurrentIndex((prevIndex) => prevIndex > 0 ? prevIndex - 1 : users.length - 1);
+    setCurrentIndex(prevIndex => (prevIndex - 1 + filteredUsers.length) % filteredUsers.length);
   };
 
   // Move to the next user profile.
   const nextUser = () => {
-    setCurrentIndex((prevIndex) => prevIndex < users.length - 1 ? prevIndex + 1 : 0);
+    setCurrentIndex(prevIndex => (prevIndex + 1) % filteredUsers.length);
   };
 
   // The current user profile to display.
-  const currentUser = users[currentIndex];
+
 
   return (
     <ScrollView style={styles.container}>
+      {/* Search Bar */}
+      <TextInput
+        style={styles.searchBar}
+        placeholder="Search for classes..."
+        value={searchQuery}
+        onChangeText={text => {
+          setSearchQuery(text);
+          setCurrentIndex(0); // Reset to the first user in the filtered list
+        }}
+      />
+
+      {currentUser && (
       <View style={styles.profileCard}>
         <Text style={styles.fullName}>{currentUser.fullName}</Text>
         <View style={styles.profileSection}>
@@ -52,14 +99,20 @@ const MatchingScreen = () => {
           <Text>Connect</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.navigation}>
-        <TouchableOpacity onPress={prevUser}>
-          <Ionicons name="arrow-back-circle" size={40} color="#000" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={nextUser}>
-          <Ionicons name="arrow-forward-circle" size={40} color="#000" />
-        </TouchableOpacity>
-      </View>
+)}
+
+      {/* Navigation arrows */}
+      {filteredUsers.length > 1 && ( // Only show navigation if there are users to navigate through
+        <View style={styles.navigation}>
+          <TouchableOpacity onPress={prevUser}>
+            <Ionicons name="arrow-back-circle" size={40} color="#000" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={nextUser}>
+            <Ionicons name="arrow-forward-circle" size={40} color="#000" />
+          </TouchableOpacity>
+        </View>
+      )}
+
     </ScrollView>
   );
 };
@@ -106,6 +159,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
+  },
+
+  searchBar: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
   },
   // ... additional styles as needed
 });
