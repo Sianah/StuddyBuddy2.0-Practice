@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     flex: 1,
-    flexWrap: 'wrap', // Allow text to wrap within the container
+     // Allow text to wrap within the container
     alignContent: 'space-between', // Evenly distribute wrapped lines
   },
   connectButton: {
