@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Button, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MatchingScreen = () => {
@@ -15,21 +15,8 @@ const MatchingScreen = () => {
       weaknesses: ['Public Speaking'],
       strengths: ['Critical Thinking']
     },
-    {
-      id: '2',
-      fullName: 'John Doe',
-      profilePic: 'https://via.placeholder.com/150',
-      classes: ['Biology 202', 'Chemistry 301'],
-      likes: ['Writing', 'Farming'],
-      skills: ['Skill Management', 'Procrastination'],
-      weaknesses: ['Introverted AF'],
-      strengths: ['Extroverted AF']
-    },
     // ... other user profiles
-
   ]);
-
-  const [searchQuery, setSearchQuery] = useState('');
 
   // Index to keep track of the current user being displayed.
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,18 +33,6 @@ const MatchingScreen = () => {
 
   // The current user profile to display.
   const currentUser = users[currentIndex];
-
-
-
-
-{/*Test*/}
-  const filteredGroups = users.filter(group =>
-    group.fullName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-{/*Test*/}
-
-
-
 
   return (
     <ScrollView style={styles.container}>
@@ -85,28 +60,6 @@ const MatchingScreen = () => {
           <Ionicons name="arrow-forward-circle" size={40} color="#000" />
         </TouchableOpacity>
       </View>
-
-      
-
-{/*Test*/}
-      <TextInput
-        placeholder="Search for..."
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        style={styles.searchBar}
-      />
-      <FlatList
-        data={filteredGroups}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.groupItem}>
-            <Text>{item.fullName}</Text>
-            {/* <Button title="Join" onPress={() => {}} /> */}
-          </View>
-        )}
-      />
-{/*Test*/}
-
     </ScrollView>
   );
 };
@@ -154,15 +107,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
   },
-  searchBar: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-    padding: 10,
-    margin: 10,
-    bottom: -17,
-  },
   // ... additional styles as needed
 });
 
 export default MatchingScreen;
+
